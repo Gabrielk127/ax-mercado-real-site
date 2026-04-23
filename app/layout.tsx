@@ -1,12 +1,11 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
+import { Public_Sans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
-const playfair = Playfair_Display({ subsets: ["latin"] })
+const publicSans = Public_Sans({ subsets: ["latin"], display: "swap" })
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -14,12 +13,12 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Programa de Indicações - Armangni Imóveis",
-  description: "Indique amigos e familiares e ganhe prêmios incríveis",
+  title: "Indicação Premiada — AX Mercado Real",
+  description: "Indique contatos para a AX Mercado Real e ganhe prêmios premium quando sua indicação resultar na compra de uma carta de crédito.",
   generator: "v0.app",
   openGraph: {
-    title: "Programa de Indicações - Armangni Imóveis",
-    description: "Indique amigos e familiares e ganhe prêmios incríveis",
+    title: "Indicação Premiada — AX Mercado Real",
+    description: "Indique contatos para a AX Mercado Real e ganhe prêmios premium quando sua indicação resultar na compra de uma carta de crédito.",
     type: "website",
     locale: "pt_BR",
     images: [
@@ -27,14 +26,14 @@ export const metadata: Metadata = {
         url: "/hero-image.png",
         width: 1200,
         height: 630,
-        alt: "Programa de Indicacoes da Armangni Imoveis",
+        alt: "Campanha Indicação Premiada — AX Mercado Real",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Programa de Indicações - Armangni Imóveis",
-    description: "Indique amigos e familiares e ganhe prêmios incríveis",
+    title: "Indicação Premiada — AX Mercado Real",
+    description: "Indique contatos para a AX Mercado Real e ganhe prêmios premium.",
     images: ["/hero-image.png"],
   },
 }
@@ -46,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`font-sans antialiased`}>
+      <body className={`${publicSans.className} font-sans antialiased`}>
         {children}
         <Toaster />
         <Analytics />

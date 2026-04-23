@@ -6,30 +6,30 @@ import { UserPlus, MessageCircle, ShoppingBag, Gift } from "lucide-react"
 const steps = [
   {
     icon: UserPlus,
-    title: "Indique um Amigo",
-    description: "Preencha o formulário com seus dados e do indicado. Ele não deve estar em nossa base ativa.",
+    title: "Indique um Contato",
+    description: "Preencha o formulário com seus dados e os do indicado. Ele não deve estar em nossa base ativa.",
   },
   {
     icon: MessageCircle,
-    title: "Nós Entramos em Contato",
-    description: "Nossa equipe consultiva apresentará os melhores imóveis para o perfil do seu indicado.",
+    title: "AX Entra em Contato",
+    description: "Nossa equipe consultiva apresentará as melhores opções de cartas de crédito para o perfil do seu indicado.",
   },
   {
     icon: ShoppingBag,
     title: "Venda Concretizada",
-    description: "Assim que a compra for concluída, o seu bônus ou prêmio físico estará garantido.",
+    description: "Assim que a compra de no mínimo uma carta de crédito for concluída, sua premiação estará garantida.",
   },
   {
     icon: Gift,
     title: "Receba sua Premiação",
-    description: "Pagamentos em até 30 dias úteis e prêmios físicos entregues em até 60 dias.",
+    description: "Pagamentos via PIX em até 30 dias úteis e prêmios físicos entregues em até 60 dias.",
   },
 ]
 
 export function HowItWorksSection() {
   return (
-    <section id="como-funciona" className="py-14 sm:py-20 md:py-32 bg-[#1C1C1C]">
-      <div className="container mx-auto px-5 sm:px-6">
+    <section id="como-funciona" className="py-14 sm:py-20 md:py-32 bg-[#101418]">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -37,9 +37,11 @@ export function HowItWorksSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-10 md:mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4 text-balance">Como Funciona</h2>
-          <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto text-pretty leading-relaxed px-2 sm:px-0">
-            Participar do programa Indicação Premiada é simples, seguro e totalmente transparente
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4 text-balance">
+            Como Funciona
+          </h2>
+          <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto text-pretty leading-relaxed">
+            Participar do programa Indicação Premiada da AX Mercado Real é simples, seguro e totalmente transparente
           </p>
         </motion.div>
 
@@ -56,20 +58,24 @@ export function HowItWorksSection() {
               >
                 <div className="flex flex-col items-center text-center relative z-10">
                   <div className="relative mb-4 sm:mb-6">
-                    <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[#BFB4AA] flex items-center justify-center shadow-lg shadow-[#BFB4AA]/20">
-                      <step.icon className="w-7 h-7 sm:w-10 sm:h-10 text-[#1C1C1C]" />
+                    <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[#7CEB63] flex items-center justify-center shadow-lg shadow-[#7CEB63]/30">
+                      <step.icon className="w-7 h-7 sm:w-10 sm:h-10 text-[#101418]" />
                     </div>
-                    <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#262626] border-2 border-[#BFB4AA] flex items-center justify-center font-bold text-xs sm:text-base text-[#BFB4AA]">
+                    <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#101418] border-2 border-[#7CEB63] flex items-center justify-center font-bold text-xs sm:text-base text-[#7CEB63]">
                       {index + 1}
                     </div>
                   </div>
-                  <h3 className="font-semibold text-base sm:text-xl mb-2 sm:mb-3 text-white">{step.title}</h3>
-                  <p className="text-gray-400 text-sm sm:text-base text-pretty leading-relaxed">{step.description}</p>
+                  <h3 className="font-semibold text-base sm:text-xl mb-2 sm:mb-3 text-white">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm sm:text-base text-pretty leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
 
                 {/* Connector line for desktop */}
                 {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 left-[60%] w-full h-0.5 bg-[#3a3a3a] z-0" />
+                  <div className="hidden lg:block absolute top-10 left-[60%] w-full h-0.5 bg-gray-800 z-0" />
                 )}
               </motion.div>
             ))}
