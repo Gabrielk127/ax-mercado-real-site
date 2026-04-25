@@ -35,37 +35,40 @@ const rules = [
 
 export function RulesSection() {
   return (
-    <section id="regras" className="py-14 sm:py-20 md:py-32 bg-[#0d1115]">
-      <div className="container mx-auto px-4">
+    <section id="regras" className="py-20 md:py-32 bg-[#1c1c1c] relative overflow-hidden">
+       {/* Decorative gradient */}
+      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#273849]/20 to-transparent pointer-events-none" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-10 md:mb-16"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#d4d3ce] mb-6 tracking-tight">
             Regras da Campanha
           </h2>
-          <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto text-pretty leading-relaxed">
-            Conheça todos os detalhes sobre como participar do programa de indicações premiadas da AX Mercado Real
+          <p className="text-lg text-[#d4d3ce]/60 max-w-2xl mx-auto leading-relaxed font-light">
+            Transparência e clareza para garantir a melhor experiência no programa
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {rules.map((section, sectionIndex) => (
             <motion.div
               key={section.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: sectionIndex * 0.15 }}
-              className="p-5 sm:p-8 rounded-lg border border-gray-800 bg-[#161b21] hover:border-[#7CEB63]/30 transition-colors duration-300"
+              transition={{ duration: 0.6, delay: sectionIndex * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="p-10 rounded-3xl border border-[#d4d3ce]/5 bg-[#273849]/20 backdrop-blur-sm hover:border-[#986f31]/30 transition-all duration-500"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-[#7CEB63] mb-4 sm:mb-6">
+              <h3 className="text-xl font-semibold text-[#986f31] mb-8 tracking-tight">
                 {section.title}
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-6">
                 {section.items.map((item, itemIndex) => (
                   <motion.li
                     key={itemIndex}
@@ -76,10 +79,10 @@ export function RulesSection() {
                       duration: 0.5,
                       delay: sectionIndex * 0.15 + itemIndex * 0.05,
                     }}
-                    className="flex gap-3"
+                    className="flex gap-4 group"
                   >
-                    <CheckCircle2 className="w-5 h-5 text-[#7CEB63] flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 leading-relaxed text-xs sm:text-sm">
+                    <CheckCircle2 className="w-5 h-5 text-[#986f31] flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                    <span className="text-[#d4d3ce]/70 leading-relaxed text-sm font-light">
                       {item}
                     </span>
                   </motion.li>
@@ -93,11 +96,12 @@ export function RulesSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-12 text-center"
+          transition={{ duration: 1, delay: 0.5 }}
+          className="mt-20 text-center"
         >
-          <p className="text-sm text-gray-500 max-w-3xl mx-auto leading-relaxed">
-            Ao submeter o formulário de indicação, você concorda automaticamente com todas as regras e condições descritas acima. A Campanha é válida por prazo indeterminado e poderá ser suspensa ou alterada a qualquer momento mediante aviso prévio. Em caso de dúvidas, entre em contato conosco.
+          <div className="inline-block p-1 rounded-full bg-gradient-to-r from-transparent via-[#986f31]/30 to-transparent w-full max-w-md mb-8" />
+          <p className="text-sm text-[#d4d3ce]/40 max-w-3xl mx-auto leading-relaxed italic">
+            Ao submeter o formulário de indicação, você concorda automaticamente com todas as regras e condições descritas acima. A Campanha é válida por prazo indeterminado e poderá ser suspensa ou alterada a qualquer momento mediante aviso prévio.
           </p>
         </motion.div>
       </div>

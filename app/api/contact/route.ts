@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       event_type: "CONVERSION",
       event_family: "CDP",
       payload: {
-        conversion_identifier: "landing-page-armangni-indica",
+        conversion_identifier: "landing-page-ax-indica",
         name: data.name,
         email: data.email,
         mobile_phone: mobilePhone,

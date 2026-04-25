@@ -21,30 +21,21 @@ const MobileMenu = () => {
     const section = document.getElementById(normalizeText(id))
     if (section) {
       section.scrollIntoView({ behavior: "smooth" })
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsOpen(false)
-            observer.disconnect()
-          }
-        },
-        { threshold: 0.7 },
-      )
-      observer.observe(section)
+      setIsOpen(false)
     }
   }
 
   const menuVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, scale: 0.95, y: -20 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+    exit: { opacity: 0, scale: 0.95, y: -20, transition: { duration: 0.3 } },
   }
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, x: -20 },
     visible: (i: number) => ({
       opacity: 1,
-      y: 0,
+      x: 0,
       transition: { delay: i * 0.1, type: "spring", stiffness: 100, damping: 20 },
     }),
   }
@@ -53,22 +44,32 @@ const MobileMenu = () => {
 
   return (
     <div className="relative">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#101418]/85 backdrop-blur-lg py-3 max-w-[1200px] rounded-3xl mt-4 mx-4 flex justify-between items-center px-6 border border-gray-800">
-        <Image
-          src="/logo-branco.png"
-          width={120}
-          height={36}
-          alt="AX Mercado Real"
-          className="object-contain h-9 w-auto"
-        />
-        <button onClick={toggleMenu} className="z-50 cursor-pointer">
-          <motion.div initial={{ rotate: 0 }} animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
-            {isOpen
-              ? <X className="h-7 w-7 text-white" />
-              : <Menu className="h-7 w-7 text-gray-300" />
-            }
-          </motion.div>
-        </button>
+      <header className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 pointer-events-none">
+        <div className="max-w-[1100px] mx-auto bg-[#986f31]/10 backdrop-blur-md border border-[#986f31]/20 rounded-full px-6 py-3 shadow-2xl pointer-events-auto flex justify-between items-center">
+          <Image
+            src="/logo-branco.png"
+            width={140}
+            height={42}
+            alt="AX Mercado Real"
+            className="object-contain h-10 w-auto"
+          />
+          <button 
+            onClick={toggleMenu} 
+            className="w-10 h-10 rounded-full bg-[#986f31]/10 flex items-center justify-center border border-[#986f31]/20 text-[#986f31]"
+          >
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                  <X size={20} />
+                </motion.div>
+              ) : (
+                <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                  <Menu size={20} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
       </header>
 
       <AnimatePresence>
@@ -78,17 +79,15 @@ const MobileMenu = () => {
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className="fixed inset-x-0 z-40 flex flex-col items-center justify-start h-auto bg-[#101418]/97 backdrop-blur-lg text-white py-16 px-8 mx-4 mt-20 rounded-3xl border border-gray-800"
+            className="fixed inset-0 z-40 bg-[#1c1c1c]/95 backdrop-blur-2xl flex flex-col items-center justify-center px-8"
           >
-            <motion.ul className="space-y-8 text-center">
+            <motion.ul className="space-y-10 text-center mb-12">
               {menuItems.map((item, index) => (
                 <motion.li
                   key={index}
                   custom={index}
-                  initial="hidden"
-                  animate="visible"
                   variants={itemVariants}
-                  className="text-xl text-gray-300 hover:text-white cursor-pointer transition duration-300"
+                  className="text-3xl font-bold text-[#d4d3ce]/60 hover:text-[#986f31] transition-colors cursor-pointer tracking-tight"
                   onClick={() => handleNavigation(item)}
                 >
                   {item}
@@ -97,15 +96,11 @@ const MobileMenu = () => {
             </motion.ul>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0, transition: { delay: 0.5 } }}
-              className="mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.6 } }}
             >
-              <a href="#formulario">
-                <button
-                  className="bg-[#7CEB63] hover:bg-[#6ad854] text-[#101418] font-bold px-8 py-3 rounded-lg transition duration-200 cursor-pointer shadow-lg shadow-[#7CEB63]/30"
-                  onClick={() => setIsOpen(false)}
-                >
+              <a href="#formulario" onClick={() => setIsOpen(false)}>
+                <button className="bg-[#986f31] text-[#d4d3ce] font-bold px-12 py-5 rounded-2xl shadow-2xl shadow-[#986f31]/20 text-lg">
                   Indicar Agora
                 </button>
               </a>

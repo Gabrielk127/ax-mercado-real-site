@@ -13,21 +13,24 @@ const DesktopMenu = () => {
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#101418]/85 backdrop-blur-lg py-3 max-w-[1200px] rounded-3xl mx-auto mt-4 border border-gray-800">
-      <div className="container mx-auto flex justify-between items-center px-8 gap-4">
-        <motion.div className="cursor-pointer" whileHover={{ scale: 1.03 }}>
+    <header className="fixed top-0 left-0 right-0 z-50 px-6 pt-6 pointer-events-none">
+      <div className="max-w-[1100px] mx-auto bg-[#986f31]/10 backdrop-blur-md border border-[#986f31]/20 rounded-full px-10 py-3 shadow-2xl pointer-events-auto flex justify-between items-center relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#986f31]/5 to-transparent pointer-events-none" />
+        
+        <motion.div className="cursor-pointer relative z-10" whileHover={{ scale: 1.02 }}>
           <Link href="#inicio">
             <Image
               src="/logo-branco.png"
-              width={120}
-              height={36}
+              width={160}
+              height={46}
               alt="AX Mercado Real"
-              className="object-contain h-9 w-auto"
+              className="object-contain h-11 w-auto"
             />
           </Link>
         </motion.div>
 
-        <nav className="hidden md:flex space-x-8 items-center">
+        <nav className="hidden md:flex space-x-10 items-center relative z-10">
           {menuItems.map((item, index) => (
             <motion.div
               key={index}
@@ -39,22 +42,28 @@ const DesktopMenu = () => {
                 transition: { delay: index * 0.1, duration: 0.5 },
               }}
             >
-              <a href={item.href} className="text-gray-300 text-base hover:text-white transition text-nowrap">
+              <a href={item.href} className="text-[#d4d3ce]/70 text-sm font-medium hover:text-[#986f31] transition-all duration-300 tracking-tight">
                 {item.label}
               </a>
-              <div className="absolute left-0 bottom-0 h-0.5 bg-[#7CEB63] w-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+
+              <motion.div
+                className="absolute -bottom-1 left-0 h-[2px] bg-[#986f31] w-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+                layoutId="nav-underline"
+              />
             </motion.div>
           ))}
 
           <motion.a
             href="#formulario"
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{
               opacity: 1,
-              y: 0,
+              scale: 1,
               transition: { delay: 0.5, duration: 0.5 },
             }}
-            className="bg-[#7CEB63] hover:bg-[#6ad854] text-[#101418] font-bold px-6 py-2 rounded-lg transition duration-200 cursor-pointer text-sm shadow-lg shadow-[#7CEB63]/30 active:scale-[0.98]"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#986f31] text-[#d4d3ce] font-bold px-8 py-3 rounded-2xl transition-all duration-300 cursor-pointer text-sm shadow-xl shadow-[#986f31]/20 border border-[#986f31]/30"
           >
             Indicar Agora
           </motion.a>
