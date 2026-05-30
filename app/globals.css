@@ -80,6 +80,13 @@
 @theme inline {
   --font-sans: "Public Sans", sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback";
+  
+  /* Brand Specific Colors */
+  --color-gold: #986f31;
+  --color-gold-hover: #7a5927;
+  --color-charcoal: #1c1c1c;
+  --color-cream: #d4d3ce;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

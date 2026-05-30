@@ -13,28 +13,35 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Indicação Premiada — AX Mercado Real",
-  description: "Indique contatos para a AX Mercado Real e ganhe prêmios premium quando sua indicação resultar na compra de uma carta de crédito.",
-  generator: "v0.app",
+  title: {
+    default: "AX Negócios, Créditos & Investimentos — Soluções Financeiras em Londrina",
+    template: "%s — AX Negócios, Créditos & Investimentos",
+  },
+  description:
+    "Consórcios, financiamentos imobiliários e de veículos, carta contemplada e assessoria financeira personalizada. Soluções completas para pessoas físicas e empresas em Londrina - PR.",
+  keywords: ["consórcio", "financiamento", "carta contemplada", "assessoria financeira", "investimentos", "Londrina", "AX Negócios"],
+  authors: [{ name: "AX Negócios, Créditos & Investimentos" }],
   openGraph: {
-    title: "Indicação Premiada — AX Mercado Real",
-    description: "Indique contatos para a AX Mercado Real e ganhe prêmios premium quando sua indicação resultar na compra de uma carta de crédito.",
+    title: "AX Negócios, Créditos & Investimentos",
+    description:
+      "Consórcios, financiamentos e assessoria financeira personalizados. Realize seus objetivos com quem entende do mercado.",
     type: "website",
     locale: "pt_BR",
+    siteName: "AX Negócios, Créditos & Investimentos",
     images: [
       {
-        url: "/hero-image.png",
+        url: "/hero-advisor.png",
         width: 1200,
         height: 630,
-        alt: "Campanha Indicação Premiada — AX Mercado Real",
+        alt: "AX Negócios, Créditos & Investimentos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Indicação Premiada — AX Mercado Real",
-    description: "Indique contatos para a AX Mercado Real e ganhe prêmios premium.",
-    images: ["/hero-image.png"],
+    title: "AX Negócios, Créditos & Investimentos",
+    description: "Consórcios, financiamentos e assessoria financeira personalizados em Londrina - PR.",
+    images: ["/hero-advisor.png"],
   },
 }
 
@@ -44,8 +51,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${publicSans.className} font-sans antialiased`}>
+    <html lang="pt-BR" className="dark">
+      <body className={`${publicSans.className} font-sans antialiased bg-[#1c1c1c] text-[#d4d3ce]`}>
         {children}
         <Toaster />
         <Analytics />
