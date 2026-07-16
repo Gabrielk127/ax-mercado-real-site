@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import Header from "@/components/header/header"
@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
 import { Home, Car, Wrench, ChevronDown, MessageCircle, ArrowRight, CheckCircle } from "lucide-react"
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: (i = 0) => ({
     opacity: 1,

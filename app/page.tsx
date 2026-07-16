@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import Header from "@/components/header/header"
@@ -65,7 +65,7 @@ const stats = [
   { number: "5 anos", label: "De experiência no mercado" },
 ]
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: (i = 0) => ({
     opacity: 1,

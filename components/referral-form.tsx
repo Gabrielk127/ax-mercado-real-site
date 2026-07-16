@@ -51,7 +51,7 @@ export function ReferralForm() {
         cpf_do_indicador: (document.getElementById("seu-cpf") as HTMLInputElement).value,
       }
 
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/referral", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

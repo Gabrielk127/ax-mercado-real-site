@@ -1,13 +1,13 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import Image from "next/image"
 import Header from "@/components/header/header"
 import { Footer } from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
 import { BarChart3, BookOpen, Target, MessageCircle, CheckCircle } from "lucide-react"
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: (i = 0) => ({
     opacity: 1,

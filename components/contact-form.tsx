@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { useToast } from "@/hooks/use-toast"
 import { Loader2, CheckCircle, X } from "lucide-react"
 
@@ -48,25 +48,25 @@ export function ContactForm({ interest = "Geral", onClose }: ContactFormProps) {
         body: JSON.stringify({
           name: form.name,
           email: form.email,
-          mobile_phone: form.mobile_phone,
-          cidade_do_indicado: form.cidade,
-          nome_do_indicado: form.name,
-          telefone_do_indicado: form.mobile_phone,
-          email_do_indicado: form.email,
-          cf_cidade_do_indicado: form.cidade,
-          interesse: interest,
+          phone: form.mobile_phone,
+          cidade: form.cidade,
+          conversionIdentifier: interest,
         }),
       })
 
       if (res.ok) {
         setSubmitted(true)
       } else {
-        throw new Error("Erro ao enviar")
+        const errorData = await res.json().catch(() => ({}))
+        throw new Error(errorData.error ?? "Erro ao enviar")
       }
-    } catch {
+    } catch (error) {
       toast({
         title: "Erro ao enviar",
-        description: "Por favor, tente novamente ou entre em contato pelo WhatsApp.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Por favor, tente novamente ou entre em contato pelo WhatsApp.",
         variant: "destructive",
       })
     } finally {
