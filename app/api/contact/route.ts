@@ -1,7 +1,5 @@
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function sanitize(value: string) {
@@ -36,8 +34,18 @@ export async function POST(request: Request) {
       })
     }
 
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY não encontrado nas variáveis de ambiente")
+      return new Response(JSON.stringify({ error: "Serviço de e-mail não configurado." }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      })
+    }
+
     const safeName = sanitize(String(name))
     const safeEmail = sanitize(String(email))
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     const { error } = await resend.emails.send({
       from: process.env.CONTACT_EMAIL_FROM ?? "AX Mercado Real <contato@armangniimoveis.com.br>",
